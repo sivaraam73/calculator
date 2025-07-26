@@ -1,37 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Calculator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scientific Calculator</title>
   <style>
-    body { font-family: Arial; padding: 20px; text-align: center; }
-    input, button { margin: 5px; padding: 10px; font-size: 1em; }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1e1e2f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+    .calculator {
+      width: 360px;
+      background: #2e2e3a;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      padding: 20px;
+    }
+    .display {
+      background: #1a1a2b;
+      color: #0ff;
+      font-size: 2em;
+      padding: 15px;
+      text-align: right;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    button {
+      padding: 20px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #3d3d50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #505066;
+    }
+    button.operator {
+      background-color: #f57c00;
+    }
+    button.operator:hover {
+      background-color: #ff9800;
+    }
+    button.equal {
+      background-color: #4caf50;
+    }
+    button.equal:hover {
+      background-color: #66bb6a;
+    }
+    @media (max-width: 400px) {
+      .calculator {
+        width: 95%;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Simple Calculator</h1>
-  <input type="number" id="num1" placeholder="First Number">
-  <input type="number" id="num2" placeholder="Second Number">
-  <br>
-  <button onclick="calculate('+')">+</button>
-  <button onclick="calculate('-')">-</button>
-  <button onclick="calculate('*')">*</button>
-  <button onclick="calculate('/')">/</button>
-  <h2 id="result">Result: </h2>
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="delChar()">DEL</button>
+      <button onclick="append('%')">%</button>
+      <button onclick="append('/')">÷</button>
+      <button onclick="append('Math.sqrt(')">√</button>
+
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('*')">×</button>
+      <button onclick="append('Math.pow(')">^</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="append('-')">−</button>
+      <button onclick="append('Math.log10(')">log</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="append('+')">+</button>
+      <button onclick="append('Math.log(')">ln</button>
+
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button onclick="append('(')">(</button>
+      <button onclick="append(')')">)</button>
+      <button class="equal" onclick="calculate()">=</button>
+
+      <button onclick="append('Math.sin(')">sin</button>
+      <button onclick="append('Math.cos(')">cos</button>
+      <button onclick="append('Math.tan(')">tan</button>
+      <button onclick="append('Math.PI')">π</button>
+      <button onclick="append('Math.E')">e</button>
+    </div>
+  </div>
 
   <script>
-    function calculate(op) {
-      const num1 = parseFloat(document.getElementById('num1').value);
-      const num2 = parseFloat(document.getElementById('num2').value);
-      let result;
-      switch(op) {
-        case '+': result = num1 + num2; break;
-        case '-': result = num1 - num2; break;
-        case '*': result = num1 * num2; break;
-        case '/': result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero'; break;
+    let display = document.getElementById("display");
+    let expression = "";
+
+    function append(value) {
+      expression += value;
+      display.textContent = expression;
+    }
+
+    function clearDisplay() {
+      expression = "";
+      display.textContent = "0";
+    }
+
+    function delChar() {
+      expression = expression.slice(0, -1);
+      display.textContent = expression || "0";
+    }
+
+    function calculate() {
+      try {
+        let result = eval(expression);
+        display.textContent = result;
+        expression = result.toString();
+      } catch {
+        display.textContent = "Error";
+        expression = "";
       }
-      document.getElementById('result').innerText = `Result: ${result}`;
     }
   </script>
 </body>
