@@ -154,34 +154,62 @@ button.equal {
   </div>
 
   <script>
-    let display = document.getElementById("display");
-    let expression = "";
 
-    function append(value) {
-      expression += value;
-      display.textContent = expression;
-    }
+  let display = document.getElementById("display");
+  let expression = "";
 
-    function clearDisplay() {
-      expression = "";
-      display.textContent = "0";
-    }
-
-    function delChar() {
-      expression = expression.slice(0, -1);
-      display.textContent = expression || "0";
-    }
-
-    function calculate() {
-      try {
-        let result = eval(expression);
-        display.textContent = result;
-        expression = result.toString();
-      } catch {
-        display.textContent = "Error";
-        expression = "";
+  function append(value) {
+    // Handle custom math symbols
+    if (value === 'Math.sqrt(') {
+      expression += 'Math.sqrt(';
+    } else if (value === 'Math.pow(') {
+      // For exponentiation, we’ll insert the base and add a comma, expecting power after
+      expression += 'Math.pow(';
+    } else if (value === '^') {
+      // Replace caret with Math.pow logic if used directly
+      const parts = expression.split(/([\d\.]+)\^([\d\.]+)/);
+      if (parts.length >= 3) {
+        const base = parts[1];
+        const exp = parts[2];
+        expression = `Math.pow(${base},${exp})`;
+      } else {
+        expression += '^';
       }
+    } else {
+      expression += value;
     }
+
+    display.textContent = expression;
+  }
+
+  function clearDisplay() {
+    expression = "";
+    display.textContent = "0";
+  }
+
+  function delChar() {
+    expression = expression.slice(0, -1);
+    display.textContent = expression || "0";
+  }
+
+  function calculate() {
+    try {
+      // Replace percent symbol
+      const sanitized = expression.replace(/%/g, "/100");
+
+      // Evaluate the expression safely
+      let result = eval(sanitized);
+      display.textContent = result;
+      expression = result.toString();
+    } catch (e) {
+      display.textContent = "Error";
+      expression = "";
+    }
+  }
+
+
+
+    
   </script>
 </body>
 </html>
