@@ -48,7 +48,9 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+    min-height: 100vh;
+    color: #222;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -108,30 +110,20 @@
         }
 
         .calculator {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-            margin-bottom: 20px;
+            background: #fff;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(53, 91, 225, 0.07), 0 1.5px 0px #e5e7eb;
+    border: 1px solid #eaeaea;
         }
 
         .display {
-            background: linear-gradient(135deg, #1e293b, #334155);
-            color: #f1f5f9;
-            padding: 25px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            box-shadow: 
-                inset 0 2px 10px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.1),
-                0 0 30px rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #f3f5fa;
+    color: #222;
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: inset 0 2px 4px rgba(18,54,102,.03);
         }
 
         .display-main {
@@ -215,31 +207,23 @@
         }
 
         .btn-number {
-            background: linear-gradient(135deg, rgba(248, 250, 252, 0.1), rgba(226, 232, 240, 0.05));
-            color: #f8fafc;
-            font-weight: 600;
+            background: #f8fafc;
+    color: #222;
+    border: 1px solid #dde3ed;
+    box-shadow: 0 1.5px 2px rgba(0,30,80,0.03);
         }
 
         .btn-number:hover {
-            background: linear-gradient(135deg, rgba(248, 250, 252, 0.2), rgba(226, 232, 240, 0.1));
-            transform: translateY(-1px);
-            box-shadow: 
-                0 4px 12px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.2);
+            background: #e6eeff;
         }
 
         .btn-operator {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            font-weight: 700;
+            background: linear-gradient(135deg, #e0e7ff 50%, #99bafd 100%);
+    color: #2557d6;
         }
 
         .btn-operator:hover {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            transform: translateY(-1px);
-            box-shadow: 
-                0 4px 12px rgba(245, 158, 11, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.2);
+           background: linear-gradient(135deg, #b9d0fb 0%, #75a7ff 100%);
         }
 
         .btn-function {
@@ -258,24 +242,17 @@
         }
 
         .btn-equals {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
+            background: linear-gradient(135deg, #80ffa0 10%, #34d399 100%);
+    color: #195c39;
         }
 
         .btn-equals:hover {
-            background: linear-gradient(135deg, #34d399, #10b981);
-            transform: translateY(-1px);
-            box-shadow: 
-                0 4px 12px rgba(16, 185, 129, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.2);
+           background: linear-gradient(135deg, #57e89c 0%, #1bc771 100%);
         }
 
         .btn-clear {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            font-weight: 700;
+            background: linear-gradient(135deg, #ffeded 30%, #ffc8c8 100%);
+    color: #c42727;
         }
 
         .btn-clear:hover {
