@@ -1,17 +1,16 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Modern Calculator - Fast, Clear, Responsive Web App</title>
-  <meta name="description" content="A free, online, modern calculator for quick and advanced math. Sleek, accessible, and optimized for all devices.">
+  <title>Modern Scientific Calculator – Free, Fast, Responsive Web App</title>
+  <meta name="description" content="A free, online, modern scientific calculator for quick and advanced math. Large UI, high contrast, mobile-friendly, accessible, SEO-optimized.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="calculator, online calculator, scientific calculator, free calculator, math calculator, modern UI">
+  <meta name="keywords" content="scientific calculator, calculator, online calculator, free calculator, math, modern UI, trigonometry, log, factorial, responsive">
   <meta name="author" content="CalcModern">
   <meta name="robots" content="index, follow">
-
   <!-- Open Graph -->
-  <meta property="og:title" content="Modern Calculator - Fast, Responsive, Free">
-  <meta property="og:description" content="A powerful, modern calculator web app. Large, clear, and mobile-friendly.">
+  <meta property="og:title" content="Modern Scientific Calculator – Free, Responsive, Powerful">
+  <meta property="og:description" content="A full scientific calculator web app. Large, clear, mobile-first with all math tools.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://calcmodern.example.com">
   <meta property="og:image" content="calculator-og-image.png">
@@ -21,9 +20,9 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Modern Calculator",
+    "name": "Modern Scientific Calculator",
     "url": "https://calcmodern.example.com",
-    "description": "A bright, modern scientific calculator available online for free.",
+    "description": "A free online modern scientific calculator for mobile and desktop.",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
     "offers": {
@@ -33,168 +32,118 @@
     }
   }
   </script>
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-light: #e0e7ff;
-      --accent: #059669;
-      --accent-light: #bef5d7;
-      --danger: #ef4444;
+      --primary: #1652f0;
+      --primary-light: #dbe9ff;
+      --accent: #15803d;
+      --accent-light: #86efac;
+      --danger: #b91c1c;
+      --danger-light: #fecaca;
+      --special: #075985;
+      --special-light: #dbeafe;
       --background: #f9fafb;
       --foreground: #fff;
-      --shadow: 0 4px 24px rgba(38,99,235,0.08);
-      --btn-radius: 16px;
-      --btn-size: 68px;
+      --shadow: 0 7px 40px 0 rgba(38,99,235,0.11);
+      --btn-radius: 18px;
+      --btn-size: 86px;
     }
-    html, body {
-      height: 100%;
-    }
+    html, body { height: 100%; }
     body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--background) 70%, #e8f0fe 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      margin: 0; padding: 0; min-height: 100vh;
+      background: linear-gradient(135deg, var(--background) 70%, #e6f4ff 100%);
+      display: flex; flex-direction: column; align-items: center;
       font-family: 'Inter', system-ui, Arial, sans-serif;
-      color: #21243b;
+      color: #222a40;
       -webkit-font-smoothing: antialiased;
       line-height: 1.5;
     }
     .container {
-      width: 100%;
-      max-width: 440px;
-      margin: 32px auto;
-      background: var(--foreground);
-      border-radius: 32px;
+      width: 100%; max-width: 500px; margin: 40px auto 0 auto;
+      background: var(--foreground); border-radius: 36px;
       box-shadow: var(--shadow);
-      padding: 28px 20px 24px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 36px 22px 30px 22px; display: flex; flex-direction: column; align-items: center;
     }
     header {
-      margin-bottom: 18px;
-      text-align: center;
+      margin-bottom: 26px; text-align: center;
     }
     header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -.01em;
-      color: var(--primary);
-      margin: 0 0 7px 0;
+      font-size: 2.8rem; font-weight: 700; letter-spacing: -.01em;
+      color: var(--primary); margin: 0 0 10px 0;
     }
     header p {
-      color: #475569;
-      font-size: 1.1rem;
-      margin-bottom: 0;
+      color: #475569; font-size: 1.18rem; margin-bottom: 0;
     }
     .display-panel {
-      width: 100%;
-      background: #f3f4f6;
-      border-radius: 16px;
-      border: 1.5px solid #e0e7ef;
-      padding: 20px 18px 8px 18px;
-      margin-bottom: 16px;
-      min-height: 74px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      user-select: all;
+      width: 100%; background: #eef4fc;
+      border-radius: 16px; border: 2px solid #e0e7ef;
+      padding: 30px 16px 12px 16px; margin-bottom: 18px;
+      min-height: 84px; display: flex; flex-direction: column; align-items: flex-end; user-select: all;
+      box-sizing: border-box;
     }
     .display-main {
-      font-family: 'JetBrains Mono', 'Consolas', 'Menlo', monospace;
-      font-size: 2.3rem;
-      color: #2d3650;
-      word-break: break-all;
-      text-align: right;
-      min-height: 38px;
-      width: 100%;
-      font-weight: 600;
-      line-height: 1.3;
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      font-size: 2.8rem; color: #271b42; font-weight: 600; word-break: break-all;
+      text-align: right; min-height: 44px; width: 100%; line-height: 1.2;
     }
     .display-mini {
-      font-size: 1rem;
-      color: var(--primary);
-      letter-spacing: -.012em;
-      opacity: 0.7;
-      min-height: 18px;
-      text-align: right;
-      width: 100%;
-      margin-bottom: 4px;
+      font-size: 1.16rem; color: var(--primary); letter-spacing: -.012em;
+      opacity: 0.75; min-height: 24px; text-align: right; width: 100%; margin-bottom: 10px;
     }
     .calculator-grid {
       width: 100%;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      margin-bottom: 14px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 18px;
     }
     .btn {
       height: var(--btn-size);
-      font-size: 1.25rem;
+      font-size: 1.45rem;
       border: none;
       border-radius: var(--btn-radius);
-      background: var(--primary-light);
-      color: #1e293b;
-      font-family: inherit;
-      font-weight: 700;
-      box-shadow: 0 1.5px 4px 0 rgba(38,99,235,0.07);
+      font-family: inherit; font-weight: 700;
+      box-shadow: 0 2.5px 8px 0 rgba(38,99,235,0.07);
       cursor: pointer;
       outline: none;
-      transition: background 0.18s, color 0.17s, transform 0.14s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      touch-action: manipulation;
-      user-select: none;
+      display: flex; align-items: center; justify-content: center;
+      touch-action: manipulation; user-select: none;
+      transition: background 0.18s, color 0.16s, transform 0.14s;
     }
     .btn:active { transform: scale(0.98); }
-    .btn.operation { background: linear-gradient(135deg, #e0e7ff, #c7d6fa 60%); color: var(--primary);}
-    .btn.equals { background: linear-gradient(135deg, #6ee7b7, #3b82f6); color: #134e4a;}
-    .btn.clear { background: linear-gradient(135deg, #fee2e2, #fecaca 60%); color: var(--danger);}
+    .btn.operation { background: var(--primary-light); color: var(--primary);}
+    .btn.equals { background: linear-gradient(135deg, var(--accent-light), var(--accent)); color: #064e3b;}
+    .btn.clear { background: linear-gradient(135deg, var(--danger-light), #fff); color: var(--danger);}
     .btn.large { grid-column: span 2; }
-    .btn.special { background: #e0f2fe; color: #0369a1; }
-    .btn:focus-visible { outline: 2.5px solid var(--primary); z-index: 10; }
+    .btn.special { background: var(--special-light); color: var(--special);}
+    .btn.function { background: #e0e7ff; color: #2563eb;}
+    .btn:focus-visible { outline: 3px solid var(--primary); z-index: 10; }
+    .btn.disabled { opacity: 0.38; pointer-events: none;}
     .seo-footer {
-      width: 100%;
-      max-width: 420px;
-      margin: 36px auto 0 auto;
-      padding: 22px 12px;
-      background: #f1f5f9;
-      border-radius: 16px;
-      border: 1px solid #e0e7ef;
-      text-align: center;
-      color: #456;
-      font-size: 1rem;
-      line-height: 1.6;
+      width: 100%; max-width: 450px; margin: 42px auto 0 auto;
+      padding: 24px 12px; background: #f5f8fd;
+      border-radius: 18px; border: 1px solid #e0e7ef;
+      text-align: center; color: #466; font-size: 1.13rem; line-height: 1.7;
     }
     .feature-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px 18px;
-      margin: 12px 0;
-      font-size: 1em;
-      color: #64748b;
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 11px 19px; margin: 15px 0 4px 0; font-size: 1em; color: #64748b;
     }
-    @media (max-width: 520px) {
-      .container { 
-        max-width: 100vw; 
-        border-radius: 0;
-        padding: 24px 4vw 18px 4vw;
-      }
-      header h1 { font-size: 2rem;}
-      .btn { font-size: 1.13rem; height: 54px; }
-      .calculator-grid { gap: 9px;}
+    @media (max-width: 600px) {
+      .container { max-width: 100vw; border-radius: 0; padding: 24px 2vw 14px 2vw;}
+      header h1 { font-size: 1.95rem;}
+      .btn { font-size: 1.12rem; height: 60px; }
+      .calculator-grid { gap: 7px;}
+      .btn.large { min-width: 82px; }
+      .display-main { font-size: 1.79rem; }
+      .display-panel { padding: 20px 9px 8px 9px;}
     }
-    @media (max-width: 370px) {
-      .btn { font-size: 1rem; height: 44px; }
+    @media (max-width: 400px) {
+      .btn { font-size: .92rem; height: 44px;}
+      .display-main { font-size: 1.1rem;}
     }
   </style>
 </head>
@@ -202,8 +151,8 @@
 <body>
   <main class="container" role="main">
     <header>
-      <h1>Modern Calculator</h1>
-      <p>Fast, clear, large and mobile-friendly – do math in style!</p>
+      <h1>Scientific Calculator</h1>
+      <p>Big. Modern. Free. All math, instantly, everywhere!</p>
     </header>
 
     <section aria-label="Calculator main panel">
@@ -211,115 +160,228 @@
         <div class="display-mini" id="display-history"></div>
         <div class="display-main" id="display-result">0</div>
       </div>
-      <div class="calculator-grid" id="calc-buttons" aria-label="Calculator buttons">
-        <!-- Buttons are rendered by JS -->
-      </div>
+      <div class="calculator-grid" id="calc-buttons" aria-label="Calculator buttons"></div>
     </section>
   </main>
 
   <footer class="seo-footer">
-    <strong>Free, Modern Web Calculator</strong> – the easiest, cleanest, and clearest calculator for every device.
+    <strong>Modern Scientific Calculator</strong> – largest, clearest calculator for mobile & desktop.<br>
     <div class="feature-list">
-      <span>• One-tap Mobile</span>
-      <span>• Keyboard Support</span>
-      <span>• Big Buttons</span>
+      <span>• Scientific & Standard Functions</span>
+      <span>• Keyboard & Touch</span>
+      <span>• Big Targets</span>
       <span>• Responsive</span>
-      <span>• Copy/Paste Results</span>
-      <span>• Instant, Accurate Math</span>
+      <span>• Instant, Accurate</span>
+      <span>• Copy Result by Tap</span>
     </div>
-    <div>&copy; 2025 Modern Calculator. Built for accessibility and clarity.</div>
+    <div>&copy; 2025 Modern Calculator. Built for clarity and accessibility.</div>
   </footer>
 
   <script>
-    // Layout config – intuitive/scientific, clear ordering, accessible names
+    // Button layout for scientific calculator
     const buttonLayout = [
       [
         { text: 'AC', class: 'clear', aria: 'All clear' },
         { text: 'C', class: 'clear', aria: 'Clear entry' },
-        { text: '⌫', class: 'special', aria: 'Delete last digit' },
-        { text: '÷', class: 'operation', aria: 'Divide' },
+        { text: '(', class: 'special', aria: 'Open parenthesis' },
+        { text: ')', class: 'special', aria: 'Close parenthesis' },
+        { text: '÷', class: 'operation', aria: 'Divide' }
       ],
       [
-        { text: '7' }, { text: '8' }, { text: '9' }, { text: '×', class: 'operation', aria: 'Multiply' }
+        { text: 'sin', class: 'function', aria: 'Sine' },
+        { text: 'cos', class: 'function', aria: 'Cosine' },
+        { text: 'tan', class: 'function', aria: 'Tangent' },
+        { text: '^', class: 'function', aria: 'Exponentiate' },
+        { text: '×', class: 'operation', aria: 'Multiply' }
       ],
       [
-        { text: '4' }, { text: '5' }, { text: '6' }, { text: '-', class: 'operation', aria: 'Subtract' }
+        { text: '7' }, { text: '8' }, { text: '9' },
+        { text: '√', class: 'function', aria: 'Square root' },
+        { text: '-', class: 'operation', aria: 'Subtract' }
       ],
       [
-        { text: '1' }, { text: '2' }, { text: '3' }, { text: '+', class: 'operation', aria: 'Add' }
+        { text: '4' }, { text: '5' }, { text: '6' },
+        { text: 'log', class: 'function', aria: 'Log base 10' },
+        { text: '+', class: 'operation', aria: 'Add' }
       ],
       [
-        { text: '0', class: 'large', aria: 'Zero' }, { text: '.' }, { text: '=', class: 'equals', aria: 'Equals' }
+        { text: '1' }, { text: '2' }, { text: '3' },
+        { text: 'ln', class: 'function', aria: 'Natural logarithm' },
+        { text: '=', class: 'equals', aria: 'Equals' }
+      ],
+      [
+        { text: '0', class: 'large', aria: 'Zero' }, 
+        { text: '.', aria: 'Decimal point' },
+        { text: '!', class: 'function', aria: 'Factorial'},
       ]
     ];
 
-    // Calculator logic state
+    // Parser / evaluation helpers for scientific expressions
+    function factorial(n) {
+      if (n < 0 || n > 170 || isNaN(n) || !Number.isFinite(n)) return NaN;
+      let r = 1;
+      for (let i = 2; i <= n; ++i) r *= i;
+      return r;
+    }
+    // Degrees/radians toggle not shown; default is radians
+
+    // Calculator State
     let displayValue = '0';
     let historyValue = '';
-    let firstOperand = null;
-    let operator = null;
-    let waitingForSecond = false;
+    let inputStack = [];
+    let waitingForOperand = false;
 
     function updateDisplay() {
-      document.getElementById('display-result').textContent = displayValue.length > 16 ? displayValue.slice(0,16)+'…' : displayValue;
+      document.getElementById('display-result').textContent = displayValue.length > 18 ? displayValue.slice(0,18)+'…' : displayValue;
       document.getElementById('display-history').textContent = historyValue;
     }
 
-    function inputNumber(num) {
-      if (displayValue === '0' || waitingForSecond) {
+    function isOperator(token) {
+      return ['+', '-', '×', '÷', '^'].includes(token);
+    }
+    function isScientific(token) {
+      return ['sin','cos','tan','log','ln','√','!'].includes(token);
+    }
+
+    // Shunting-yard algorithm: converts inputStack to RPN for evaluation
+    function toRPN(tokens) {
+      const output = [];
+      const ops = [];
+      const prec = {'+':1, '-':1, '×':2, '÷':2, '^':3};
+      const rightAssoc = {'^':true};
+      tokens.forEach(token => {
+        if (!isNaN(token) || /^\d+\.?\d*$/.test(token)) output.push(token);
+        else if (['pi', 'e'].includes(token)) output.push(token); // constants (not in UI but for extensibility)
+        else if (isScientific(token)) ops.push(token);
+        else if (isOperator(token)) {
+          while (
+            ops.length &&
+            (isOperator(ops[ops.length - 1]) || isScientific(ops[ops.length - 1])) &&
+            (
+              (rightAssoc[token] && prec[token] < prec[ops[ops.length - 1]]) ||
+              (!rightAssoc[token] && prec[token] <= prec[ops[ops.length - 1]])
+            )
+          ) output.push(ops.pop());
+          ops.push(token);
+        } else if (token === '(') ops.push(token);
+        else if (token === ')') {
+          while(ops.length && ops[ops.length-1] !== '(') output.push(ops.pop());
+          ops.pop(); // Discard '('
+        }
+      });
+      while(ops.length) output.push(ops.pop());
+      return output;
+    }
+
+    // Evaluate RPN stack
+    function evalRPN(stack) {
+      let r = [];
+      stack.forEach(token => {
+        if (!isNaN(token)) r.push(Number(token));
+        else if (token === 'pi') r.push(Math.PI); else if (token === 'e') r.push(Math.E);
+        else if (isOperator(token)) {
+          let b=r.pop(); let a=r.pop();
+          switch(token) {
+            case '+': r.push(a+b); break;
+            case '-': r.push(a-b); break;
+            case '×': r.push(a*b); break;
+            case '÷': r.push(b===0 ? NaN : a/b); break;
+            case '^': r.push(Math.pow(a,b)); break;
+          }
+        }
+        else if (isScientific(token)) {
+          let a=r.pop();
+          switch(token) {
+            case 'sin': r.push(Math.sin(a)); break;
+            case 'cos': r.push(Math.cos(a)); break;
+            case 'tan': r.push(Math.tan(a)); break;
+            case 'log': r.push(Math.log10(a)); break;
+            case 'ln' : r.push(Math.log(a)); break;
+            case '√' : r.push(Math.sqrt(a)); break;
+            case '!':  r.push(factorial(a)); break;
+          }
+        }
+      });
+      return r.length ? r[0] : NaN;
+    }
+
+    function inputNum(num) {
+      if (waitingForOperand) {
         displayValue = num;
-        waitingForSecond = false;
+        waitingForOperand = false;
       } else {
-        if (displayValue.length < 16) displayValue += num;
+        if (displayValue === '0') displayValue = num;
+        else if (displayValue.length < 18) displayValue += num;
       }
       updateDisplay();
     }
 
     function inputDecimal() {
-      if (waitingForSecond) {
+      if (waitingForOperand) {
         displayValue = '0.';
-        waitingForSecond = false;
+        waitingForOperand = false;
       } else if (!displayValue.includes('.')) {
         displayValue += '.';
       }
       updateDisplay();
     }
 
-    function handleOperator(nextOp) {
-      const inputVal = parseFloat(displayValue);
-      if(operator && waitingForSecond) { 
-        operator = nextOp; 
-        historyValue = `${firstOperand} ${operator}`; 
-        updateDisplay(); 
-        return;
+    function handleOperator(op) {
+      if (displayValue !== '' && (inputStack.length === 0 || typeof inputStack[inputStack.length-1] !== 'string' || isOperator(inputStack[inputStack.length-1]) || inputStack[inputStack.length-1] === '(' || inputStack[inputStack.length-1] === ')')) {
+        inputStack.push(displayValue);
       }
-      if (firstOperand === null && !isNaN(inputVal)) {
-        firstOperand = inputVal;
-      } else if (operator) {
-        const result = performCalculation(firstOperand, inputVal, operator);
-        displayValue = String(result).length > 10 ? result.toPrecision(10) : String(result);
-        firstOperand = result;
-      }
-      operator = nextOp;
-      waitingForSecond = true;
-      historyValue = `${firstOperand} ${operator}`;
+      inputStack.push(op);
+      historyValue = inputStack.join(' ');
+      waitingForOperand = true;
       updateDisplay();
     }
 
-    function performCalculation(a, b, op) {
-      if      (op === '+') return a + b;
-      else if (op === '-') return a - b;
-      else if (op === '×') return a * b;
-      else if (op === '÷') return b === 0 ? '∞' : a / b;
-      return b;
+    function handleFunction(fn) {
+      if (fn === '√') {
+        inputStack.push(fn);
+        inputStack.push(displayValue);
+      } else if (fn === '!') {
+        if (displayValue !== '') {
+          inputStack.push(displayValue);
+          inputStack.push(fn);
+        }
+      } else {
+        inputStack.push(fn);
+        inputStack.push(displayValue);
+      }
+      historyValue = inputStack.join(' ');
+      waitingForOperand = true;
+      updateDisplay();
+    }
+
+    function handleParens(paren) {
+      inputStack.push(paren);
+      historyValue = inputStack.join(' ');
+      updateDisplay();
+    }
+
+    function handleEquals() {
+      if (waitingForOperand && typeof inputStack[inputStack.length-1] === 'string' && !isOperator(inputStack[inputStack.length-1])) inputStack.push(displayValue);
+      else if (!waitingForOperand && displayValue !== '') inputStack.push(displayValue);
+      let result;
+      try {
+        const rpn = toRPN(inputStack);
+        result = evalRPN(rpn);
+      } catch (e) {
+        result = NaN;
+      }
+      displayValue = (result === undefined || isNaN(result)) ? 'Error' : (Math.abs(result) > 1e10 || Math.abs(result) < 1e-6 && result !== 0 ? result.toExponential(10) : +parseFloat(result.toPrecision(12)));
+      historyValue = '';
+      inputStack = [];
+      waitingForOperand = false;
+      updateDisplay();
     }
 
     function clearAll() {
       displayValue = '0';
-      firstOperand = null;
-      operator = null;
       historyValue = '';
-      waitingForSecond = false;
+      inputStack = [];
+      waitingForOperand = false;
       updateDisplay();
     }
 
@@ -333,67 +395,66 @@
       updateDisplay();
     }
 
-    function inputEquals() {
-      if(!operator || waitingForSecond) return;
-      const inputVal = parseFloat(displayValue);
-      if (firstOperand !== null && operator !== null && !isNaN(inputVal)) {
-        const result = performCalculation(firstOperand, inputVal, operator);
-        displayValue = String(result).length > 12 ? result.toPrecision(10) : String(result);
-        historyValue = '';
-        operator = null;
-        firstOperand = null;
-        waitingForSecond = false;
-        updateDisplay();
-      }
-    }
-
     function buttonHandler(val) {
-      if ('0123456789'.includes(val)) inputNumber(val);
+      if ('0123456789'.includes(val)) inputNum(val);
       else if (val === '.') inputDecimal();
-      else if (['+', '-', '×', '÷'].includes(val)) handleOperator(val);
+      else if (['+', '-', '×', '÷', '^'].includes(val)) handleOperator(val);
+      else if (['sin','cos','tan','log','ln','√','!'].includes(val)) handleFunction(val);
+      else if (val === '(' || val === ')') handleParens(val);
       else if (val === 'AC') clearAll();
       else if (val === 'C') clearEntry();
-      else if (val === '⌫') backspace();
-      else if (val === '=') inputEquals();
+      else if (val === '=') handleEquals();
     }
 
-    // Render buttons with ARIA and tab support
+    // Render buttons
     function renderButtons() {
       const grid = document.getElementById('calc-buttons');
       grid.innerHTML = '';
-      buttonLayout.flat().forEach((btn, idx) => {
-        const b = document.createElement('button');
-        b.className = `btn${btn.class ? ' ' + btn.class : ''}${btn.class === 'large' ? ' large' : ''}`;
-        b.textContent = btn.text;
-        b.setAttribute('type', 'button');
-        b.setAttribute('tabindex', '0');
-        b.setAttribute('aria-label', btn.aria || btn.text);
-        b.onclick = () => buttonHandler(btn.text);
-        grid.appendChild(b);
+      buttonLayout.forEach(row=>{
+        row.forEach(btn=>{
+          const b = document.createElement('button');
+          b.className = `btn${btn.class ? ' ' + btn.class : ''}${btn.class === 'large' ? ' large' : ''}`;
+          b.textContent = btn.text;
+          b.setAttribute('type','button');
+          b.setAttribute('tabindex','0');
+          b.setAttribute('aria-label',btn.aria||btn.text);
+          b.onclick = ()=>buttonHandler(btn.text);
+          grid.appendChild(b);
+        });
       });
     }
 
-    // Keyboard accessibility
-    document.addEventListener('keydown', e => {
+    // Keyboard navigation
+    document.addEventListener('keydown', e=>{
       if(e.repeat) return;
-      if(e.key >= '0' && e.key <= '9') inputNumber(e.key);
+      if(e.key >= '0' && e.key <= '9') inputNum(e.key);
       else if (e.key === '.') inputDecimal();
       else if (e.key === '+' || e.key === '-') handleOperator(e.key);
       else if (e.key === '*' || e.key === 'x' || e.key === 'X') handleOperator('×');
       else if (e.key === '/' ) handleOperator('÷');
-      else if (e.key === 'Enter' || e.key === '=') inputEquals();
+      else if (e.key === '^') handleOperator('^');
+      else if (e.key === 'Enter' || e.key === '=') handleEquals();
+      else if (e.key === '(' ) handleParens('(');
+      else if (e.key === ')' ) handleParens(')');
+      else if (e.key === 'l') handleFunction('ln');
+      else if (e.key === 'g') handleFunction('log');
+      else if (e.key === 'r') handleFunction('√');
+      else if (e.key === 's') handleFunction('sin');
+      else if (e.key === 'c') handleFunction('cos');
+      else if (e.key === 't') handleFunction('tan');
+      else if (e.key === '!') handleFunction('!');
       else if (e.key.toLowerCase() === 'a') clearAll();
       else if (e.key.toLowerCase() === 'c') clearEntry();
       else if (e.key === 'Backspace') backspace();
       else if (e.key === 'Escape') clearAll();
     });
 
-    // Touch-to-copy
+    // Touch-to-copy for result
     document.getElementById('display-result').addEventListener('click', () => {
       navigator.clipboard && navigator.clipboard.writeText(displayValue);
     });
 
-    // Initialize
+    // Init
     renderButtons();
     updateDisplay();
 
