@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8" />
   <title>Free Fast, Accurate Modern Online Scientific Calculator</title>
   <meta name="description" content="Use our free online scientific calculator with advanced math functions like sin, cos, tan, log, square root, exponentiation, and more. Mobile-friendly, fast, and accurate for students, teachers, and professionals.">
@@ -18,201 +17,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <style>
- 
-   * {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #1e1e2f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-   min-height: 100vh;
-  padding: 20px;
-  flex-direction: column;
-  color: #fff;
-}
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1e1e2f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      flex-direction: column;
+      color: #fff;
+    }
 
-.calculator {
-  width: 100%;
-  max-width: 400px;
-  background: #2e2e3a;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
+    /* Responsive tuning */
+    .calculator {
+      width: 100%;
+      max-width: 400px;
+      background: #2e2e3a;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
 
-.display {
-  background: #1a1a2b;
-  color: #0ff;
-  font-size: 2em;
-  padding: 15px;
-  text-align: right;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  overflow-x: auto;
-  white-space: nowrap;
-}
+    .display {
+      background: #1a1a2b;
+      color: #0ff;
+      font-size: 2em;
+      padding: 15px;
+      text-align: right;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
 
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  gap: 10px;
-}
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+      gap: 8px;
+    }
 
-button {
-  padding: 15px;
-  font-size: 1.1em;
-  border: none;
-  border-radius: 8px;
-  background-color: #3d3d50;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  min-width: 0; /* important to prevent overflow */
-}
+    button {
+      padding: 12px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #3d3d50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      width: 100%;
+    }
 
-button:hover {
-  background-color: #505066;
-}
-button.operator {
-  background-color: #f57c00;
-}
-button.operator:hover {
-  background-color: #ff9800;
-}
-button.equal {
-  background-color: #4
-
+    button:hover {
+      background-color: #505066;
+    }
+    button.operator {
+      background-color: #f57c00;
+    }
+    button.operator:hover {
+      background-color: #ff9800;
+    }
+    button.equal {
+      background-color: #4CAF50;
+    }
+    @media(max-width: 500px){
+      body {
+        font-size: 14px;
+      }
+      .display {
+        font-size: 1.5em;
+      }
+    }
   </style>
-
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
-
-
-  
 <body>
-  <section style="text-align:center; margin-bottom: 20px; padding: 10px;">
+  <section style="text-align:center; margin-bottom: 20px;">
     <h1>Free Online Scientific Calculator</h1>
     <p style="max-width: 700px; margin: 0 auto; line-height: 1.6; color: #ddd;">
-      Welcome to our free, fast, and mobile-friendly <strong>online scientific calculator</strong> — a modern tool for solving complex mathematical problems with ease. Whether you're a student, engineer, teacher, or simply someone who needs quick calculations, this calculator is designed to help you solve equations efficiently and accurately.
-    </p>
-    <p style="max-width: 700px; margin: 20px auto 0; line-height: 1.6; color: #ccc;">
-      Our calculator supports all essential scientific operations including trigonometric functions like <strong>sin, cos, and tan</strong>, exponential and logarithmic functions such as <strong>log, ln</strong>, and roots like <strong>square root (√)</strong> and powers. It also includes constants like <strong>π (Pi)</strong> and <strong>e</strong>. This tool works seamlessly on desktops, tablets, and smartphones, making it a perfect alternative to traditional handheld devices.
-    </p>
-    <p style="max-width: 700px; margin: 20px auto 0; line-height: 1.6; color: #bbb;">
-      No installation or downloads needed — just open the page and start calculating. Bookmark this site for quick access during exams, homework, or professional use. Enjoy an ad-free, distraction-free experience. Use it anytime, anywhere, completely free of charge.
-    </p>
-  </section>
-
-
-
-  
-  <div class="calculator">
-    <div class="display" id="display">0</div>
-    <div class="buttons">
-      <button onclick="clearDisplay()">C</button>
-      <button onclick="delChar()">DEL</button>
-      <button onclick="append('%')">%</button>
-      <button onclick="append('/')">÷</button>
-      <button onclick="append('Math.sqrt(')">√</button>
-
-      <button onclick="append('7')">7</button>
-      <button onclick="append('8')">8</button>
-      <button onclick="append('9')">9</button>
-      <button onclick="append('*')">×</button>
-      <button onclick="append('Math.pow(')">^</button>
-
-      <button onclick="append('4')">4</button>
-      <button onclick="append('5')">5</button>
-      <button onclick="append('6')">6</button>
-      <button onclick="append('-')">−</button>
-      <button onclick="append('Math.log10(')">log</button>
-
-      <button onclick="append('1')">1</button>
-      <button onclick="append('2')">2</button>
-      <button onclick="append('3')">3</button>
-      <button onclick="append('+')">+</button>
-      <button onclick="append('Math.log(')">ln</button>
-
-      <button onclick="append('0')">0</button>
-      <button onclick="append('.')">.</button>
-      <button onclick="append('(')">(</button>
-      <button onclick="append(')')">)</button>
-      <button class="equal" onclick="calculate()">=</button>
-
-      <button onclick="append('Math.sin(')">sin</button>
-      <button onclick="append('Math.cos(')">cos</button>
-      <button onclick="append('Math.tan(')">tan</button>
-      <button onclick="append('Math.PI')">π</button>
-      <button onclick="append('Math.E')">e</button>
-    </div>
-  </div>
-
-  <script>
-
-  let display = document.getElementById("display");
-  let expression = "";
-
-  function append(value) {
-    // Handle custom math symbols
-    if (value === 'Math.sqrt(') {
-      expression += 'Math.sqrt(';
-    } else if (value === 'Math.pow(') {
-      // For exponentiation, we’ll insert the base and add a comma, expecting power after
-      expression += 'Math.pow(';
-    } else if (value === '^') {
-      // Replace caret with Math.pow logic if used directly
-      const parts = expression.split(/([\d\.]+)\^([\d\.]+)/);
-      if (parts.length >= 3) {
-        const base = parts[1];
-        const exp = parts[2];
-        expression = `Math.pow(${base},${exp})`;
-      } else {
-        expression += '^';
-      }
-    } else {
-      expression += value;
-    }
-
-    display.textContent = expression;
-  }
-
-  function clearDisplay() {
-    expression = "";
-    display.textContent = "0";
-  }
-
-  function delChar() {
-    expression = expression.slice(0, -1);
-    display.textContent = expression || "0";
-  }
-
-  function calculate() {
-    try {
-      // Replace percent symbol
-      const sanitized = expression.replace(/%/g, "/100");
-
-      // Evaluate the expression safely
-      let result = eval(sanitized);
-      display.textContent = result;
-      expression = result.toString();
-    } catch (e) {
-      display.textContent = "Error";
-      expression = "";
-    }
-  }
-
-
-
-    
-  </script>
-</body>
-</html>
-
-
+      Welcome to our free, fast, and mobile-friendly <strong>online scientific calculator</strong> — a modern tool for solving complex mathematical problems with ease. Whether you're a student, engineer, teacher, or someone who needs quick calculations
