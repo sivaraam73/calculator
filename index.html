@@ -327,32 +327,26 @@
     }
 
     function handleOperator(op) {
-      if (displayValue !== '' && (inputStack.length === 0 || typeof inputStack[inputStack.length-1] !== 'string' || isOperator(inputStack[inputStack.length-1]) || inputStack[inputStack.length-1] === '(' || inputStack[inputStack.length-1] === ')')) {
-        inputStack.push(displayValue);
-      }
-      inputStack.push(op);
-      historyValue = inputStack.join(' ');
-      waitingForOperand = true;
-      updateDisplay();
-    }
+  // Always push the latest displayed value if needed before operator
+  if (!waitingForOperand) {
+    inputStack.push(displayValue);
+  }
+  inputStack.push(op);
+  historyValue = inputStack.join(' ');
+  waitingForOperand = true;
+  updateDisplay();
+}
 
     function handleFunction(fn) {
-      if (fn === '√') {
-        inputStack.push(fn);
-        inputStack.push(displayValue);
-      } else if (fn === '!') {
-        if (displayValue !== '') {
-          inputStack.push(displayValue);
-          inputStack.push(fn);
-        }
-      } else {
-        inputStack.push(fn);
-        inputStack.push(displayValue);
-      }
-      historyValue = inputStack.join(' ');
-      waitingForOperand = true;
-      updateDisplay();
-    }
+  // Functions always apply to current display
+  if (!waitingForOperand) {
+    inputStack.push(displayValue);
+  }
+  inputStack.push(fn);
+  historyValue = inputStack.join(' ');
+  waitingForOperand = true;
+  updateDisplay();
+}
 
     function handleParens(paren) {
       inputStack.push(paren);
@@ -360,23 +354,27 @@
       updateDisplay();
     }
 
-    function handleEquals() {
-      if (waitingForOperand && typeof inputStack[inputStack.length-1] === 'string' && !isOperator(inputStack[inputStack.length-1])) inputStack.push(displayValue);
-      else if (!waitingForOperand && displayValue !== '') inputStack.push(displayValue);
-      let result;
-      try {
-        const rpn = toRPN(inputStack);
-        result = evalRPN(rpn);
-      } catch (e) {
-        result = NaN;
-      }
-      displayValue = (result === undefined || isNaN(result)) ? 'Error' : (Math.abs(result) > 1e10 || Math.abs(result) < 1e-6 && result !== 0 ? result.toExponential(10) : +parseFloat(result.toPrecision(12)));
-      historyValue = '';
-      inputStack = [];
-      waitingForOperand = false;
-      updateDisplay();
-    }
+   function handleEquals() {
+  // Always push the current value if needed
+  if (!waitingForOperand) {
+    inputStack.push(displayValue);
+    waitingForOperand = true; // Prevents re-adding on multiple '='
+  }
+  let result;
+  try {
+    const rpn = toRPN(inputStack);
+    result = evalRPN(rpn);
+  } catch (e) {
+    result = NaN;
+  }
+  displayValue = (result === undefined || isNaN(result)) ? 'Error' : (Math.abs(result) > 1e10 || Math.abs(result) < 1e-6 && result !== 0 ? result.toExponential(10) : +parseFloat(result.toPrecision(12)));
+  historyValue = '';
+  inputStack = [];
+  waitingForOperand = false;
+  updateDisplay();
 
+   }
+     
     function clearAll() {
       displayValue = '0';
       historyValue = '';
@@ -397,13 +395,13 @@
 
     function buttonHandler(val) {
       if ('0123456789'.includes(val)) inputNum(val);
-      else if (val === '.') inputDecimal();
-      else if (['+', '-', '×', '÷', '^'].includes(val)) handleOperator(val);
-      else if (['sin','cos','tan','log','ln','√','!'].includes(val)) handleFunction(val);
-      else if (val === '(' || val === ')') handleParens(val);
-      else if (val === 'AC') clearAll();
-      else if (val === 'C') clearEntry();
-      else if (val === '=') handleEquals();
+  else if (val === '.') inputDecimal();
+  else if (['+', '-', '×', '÷', '^'].includes(val)) handleOperator(val);
+  else if (['sin','cos','tan','log','ln','√','!'].includes(val)) handleFunction(val);
+  else if (val === '(' || val === ')') handleParens(val);
+  else if (val === 'AC') clearAll();
+  else if (val === 'C') clearEntry();
+  else if (val === '=') handleEquals();
     }
 
     // Render buttons
